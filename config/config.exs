@@ -5,6 +5,18 @@
 # is restricted to this project.
 use Mix.Config
 
+# Uberauth Configuration
+config :ueberauth, Ueberauth,
+  providers: [
+    github: {Ueberauth.Strategy.Github, [send_redirect_uri: false]}
+  ]
+
+
+# OAuth Config
+config :ueberauth, Ueberauth.Strategy.Github.OAuth,
+  client_id: "97884981a3c6ed8012bf",
+  client_secret: "b6b6aa6911b9303aa1a7ef0eb990151792f0f53f"
+
 # General application configuration
 config :mayzann,
   ecto_repos: [Mayzann.Repo]
