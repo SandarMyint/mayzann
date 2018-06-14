@@ -1,18 +1,26 @@
 {
-  "repository": {},
-  "license": "MIT",
-  "scripts": {
-    "deploy": "brunch build --production",
-    "watch": "brunch watch --stdin"
-  },
+  "name": "mayzann",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "phoenix": "file:../deps/phoenix",
-    "phoenix_html": "file:../deps/phoenix_html"
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1",
+    "react-redux": "^5.0.7",
+    "react-scripts": "1.1.4",
+    "redux": "^4.0.0",
+    "redux-promise": "^0.6.0"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "compile": "node-sass src/sass/main.scss src/css/style.css",
+    "compile-w": "node-sass src/sass/main.scss src/css/style.css -w",
+    "start:dev": "webpack-dev-server"
   },
   "devDependencies": {
-    "babel-brunch": "6.1.1",
-    "brunch": "2.10.9",
-    "clean-css-brunch": "2.10.0",
-    "uglify-js-brunch": "2.10.0"
+    "node-sass": "^4.9.0",
+    "webpack-dev-server": "^3.1.4"
   }
 }

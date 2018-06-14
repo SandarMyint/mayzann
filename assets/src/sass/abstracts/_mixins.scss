@@ -1,0 +1,26 @@
+@mixin clearfix {
+    &::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+@mixin absCenter {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@mixin reactPage {
+    width: 100vw;
+    height: 100vh;
+    background-image: linear-gradient(
+        to right bottom,
+        rgba($color-rosy-brown, 0.8),
+        rgba($color-med-purple, 0.5)),
+    url(../img/main-background.jpg);
+    background-size: cover;
+    position: relative;
+}
