@@ -2,7 +2,7 @@ defmodule MayzannWeb.AuthController do
     use MayzannWeb, :controller
     plug Ueberauth
 
-    alias Mayzann.User
+    alias Mayzann.AddUsers
     alias Mayzann.Repo
     
     def index(conn, _params) do
@@ -10,8 +10,10 @@ defmodule MayzannWeb.AuthController do
     end
 
     def callback(%{assigns: %{ueberauth_auth: auth}} = conn, params) do
-        user_params = %{token: auth.credentials.token, email: auth.info.email, provider: "github"}
-        changeset = User.changeset(%User{}, user_params)
+        user_params = %{username: auth.info.nickname, token: auth.credentials.token, email: auth.info.email, provider: "github"}
+        # IO.puts(user_params)
+        # IO.inspect(user_params)
+        changeset = AddUsers.changeset(%AddUsers{}, user_params)
         signin(conn, changeset)
     end
 
@@ -31,7 +33,7 @@ defmodule MayzannWeb.AuthController do
     end
     
     def insert_or_update_user(changeset) do
-        case Repo.get_by(User, email: changeset.changes.email) do
+        case Repo.get_by(AddUsers, email: changeset.changes.email) do
           nil ->
             Repo.insert(changeset)
           user ->

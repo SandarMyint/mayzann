@@ -3,7 +3,7 @@ defmodule MayzannWeb.Plugs.SetUser do
     import Phoenix.Controller
   
     alias Mayzann.Repo
-    alias Mayzann.User
+    alias Mayzann.AddUsers
     # alias Discuss.Router.Helpers
   
     def init(_params) do
@@ -12,7 +12,7 @@ defmodule MayzannWeb.Plugs.SetUser do
     def call(conn, _params) do
       user_id = get_session(conn, :user_id)
       cond do
-          user = user_id && Repo.get(User, user_id) ->
+          user = user_id && Repo.get(AddUsers, user_id) ->
             assign(conn, :user, user)
             # conn.assigns.user => user struct
           true ->
