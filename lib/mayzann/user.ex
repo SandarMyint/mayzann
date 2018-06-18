@@ -1,4 +1,4 @@
-defmodule Mayzann.AddUsers do
+defmodule Mayzann.User do
   use Ecto.Schema
   import Ecto.Changeset
 
@@ -8,13 +8,14 @@ defmodule Mayzann.AddUsers do
     field :provider, :string
     field :token, :string
     field :username, :string
+    has_many :posts, Mayzann.Post
 
     timestamps()
   end
 
   @doc false
-  def changeset(add_users, attrs) do
-    add_users
+  def changeset(user, attrs \\ %{}) do
+    user
     |> cast(attrs, [:username, :email, :provider, :token])
     |> validate_required([:username, :email, :provider, :token])
   end
