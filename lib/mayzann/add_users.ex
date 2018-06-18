@@ -1,4 +1,4 @@
-defmodule Mayzann.AddUsers do
+defmodule Mayzann.User do
   use Ecto.Schema
   import Ecto.Changeset
 
