@@ -11,8 +11,6 @@ defmodule MayzannWeb.AuthController do
 
     def callback(%{assigns: %{ueberauth_auth: auth}} = conn, params) do
         user_params = %{username: auth.info.nickname, token: auth.credentials.token, email: auth.info.email, provider: "github"}
-        # IO.puts(user_params)
-        # IO.inspect(user_params)
         changeset = User.changeset(%User{}, user_params)
         signin(conn, changeset)
     end

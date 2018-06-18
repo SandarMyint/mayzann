@@ -17,18 +17,4 @@ defmodule MayzannWeb.Plugs.RequireAuth do
             |> halt()
         end
     end
-
 end
-
-
-  # defmodule A do 
-  #
-  #   def ... ... do
-  #     ...
-  #   end;
-  #
-  #   def ... do
-  #     42
-  #   end
-  #
-  # end
