@@ -38,7 +38,7 @@ defmodule MayzannWeb.Router do
   scope "/api", MayzannWeb do
     pipe_through :api
 
-    resources "/users/:id", UserController, only: [:show]
+    resources "/users", UserController, only: [:show]
   end
 
   # scope "/", MayzannWeb do
