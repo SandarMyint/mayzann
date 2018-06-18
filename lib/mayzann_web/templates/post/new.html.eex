@@ -1,0 +1,13 @@
+<!-- 
+Normal Html Form 
+<form>
+    <input />
+</form>
+-->
+
+<%= form_for @changeset , post_path(@conn, :create), fn f -> %>
+    <%= text_input f, :title , placeholder: "Enter Title Of Your Post" %>
+    <%= text_input f, :description , placeholder: "Enter Description Of Your Post"%>
+    <%= submit "Post" %>
+
+<% end %>

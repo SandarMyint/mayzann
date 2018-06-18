@@ -5,6 +5,7 @@ defmodule Mayzann.Post do
   schema "posts" do
     field :description, :string
     field :title, :string
+    belongs_to :user, Mayzann.User
 
     timestamps()
   end

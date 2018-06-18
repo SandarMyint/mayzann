@@ -19,7 +19,11 @@ defmodule MayzannWeb.Router do
 
     get "/", PageController, :index
     get "/show", PostController, :index
-    # resources "/show", PostController, only: [:index]
+
+    get "/show/:id", PostController, :show
+
+    get "/new", PostController, :new
+    post "/post", PostController, :create
   end
 
   scope "/auth", MayzannWeb do
@@ -31,9 +35,11 @@ defmodule MayzannWeb.Router do
   end
 
   # Other scopes may use custom stacks.
-  # scope "/api", MayzannWeb do
-  #   pipe_through :api
-  # end
+  scope "/api", MayzannWeb do
+    pipe_through :api
+
+    resources "/users", UserController, only: [:show]
+  end
 
   # scope "/", MayzannWeb do
   #   pipe_through :browser
