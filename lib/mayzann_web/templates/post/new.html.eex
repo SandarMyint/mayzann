@@ -9,5 +9,4 @@ Normal Html Form
     <%= text_input f, :title , placeholder: "Enter Title Of Your Post" %>
     <%= text_input f, :description , placeholder: "Enter Description Of Your Post"%>
     <%= submit "Post" %>
-
 <% end %>
