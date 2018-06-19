@@ -37,6 +37,17 @@ defmodule MayzannWeb.PostController do
         render(conn, "new.html",changeset: changeset)
     end
 
+    # def create(conn, %{"post" => post}) do
+    #     IO.inspect(post)
+    #     IO.inspect(conn.assigns.user)
+    #     changeset = conn.assigns.user
+    #     changeset = Ecto.build_assoc(changeset,:posts)
+    #     changeset = Post.changeset(changeset,post)
+    #     IO.inspect changeset
+    #     Repo.insert!(changeset)
+    #     text conn,"GG"
+    # end
+
     
 
   end

@@ -2,7 +2,6 @@ defmodule Mayzann.Accounts do
     
     import Ecto.Changeset
     import Ecto.Query
-
     alias Mayzann.{User, Repo, Post}
 
     def get_user(user_id) do
