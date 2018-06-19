@@ -21,9 +21,9 @@
   <body>
     <nav class = "light-blue">
       <div class = "nav-wrapper container">
-        <a href="/" class="brand-logo">
-          Discussions
-        </a>
+        <div class="brand-logo">
+          <%= link "Mayzann", to: post_path(@conn, :index) %>
+        </div>
         <ul class ="right">
           <%= if @conn.assigns[:user] do %>
             <li>

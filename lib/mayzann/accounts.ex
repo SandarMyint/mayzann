@@ -1,6 +1,8 @@
 defmodule Mayzann.Accounts do
     
     import Ecto.Changeset
+    import Ecto.Query
+
     alias Mayzann.{User, Repo, Post}
 
     def get_user(user_id) do
@@ -15,7 +17,7 @@ defmodule Mayzann.Accounts do
     # testing if posts can be obtained by users
     def get_post_by_user(user_id) do
         # Repo.get_by(Post, user_id: user_id)
-        Repo.all(Post, user_id: user_id)
+        from(p in Post, where: p.user_id == ^user_id) |> Repo.all
     end
 
 end

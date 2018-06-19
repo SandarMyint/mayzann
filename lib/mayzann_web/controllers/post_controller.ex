@@ -15,9 +15,9 @@ defmodule MayzannWeb.PostController do
     end
 
     #Show Post Details By ID
-    def show(conn, %{"id" => post_id}) do
+    def detail(conn, %{"id" => post_id}) do
         post = Repo.get!(Post, post_id)
-        render(conn, "showone.json" , post: post)
+        render(conn, "detail.json" , post: post)
     end
 
     #Go To Create Page 
@@ -32,8 +32,9 @@ defmodule MayzannWeb.PostController do
         changeset = conn.assigns.user
         |> Ecto.build_assoc(:posts)
         |> Post.changeset(post)
-        text conn, "hello world"
         
+        Repo.insert!(changeset)
+        render(conn, "new.html",changeset: changeset)
     end
 
     

@@ -18,9 +18,9 @@ defmodule MayzannWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-    get "/show", PostController, :index
+    get "/index", PostController, :index
 
-    get "/show/:id", PostController, :show
+    get "/detail/:id", PostController, :detail
 
     get "/new", PostController, :new
     post "/post", PostController, :create

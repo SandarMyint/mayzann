@@ -12,15 +12,16 @@ defmodule MayzannWeb.PostView do
 
     def render("post.json", %{post: post}) do
         %{id: post.id,
-          title: post.title
+          title: post.title,
+          description: post.description
         }
     end
 
-    def render("showone.json", %{post: post}) do
-       %{data: render_one(post, PostView, "postshowone.json")} 
+    def render("detail.json", %{post: post}) do
+       %{data: render_one(post, PostView, "postdetail.json")} 
     end
 
-    def render("postshowone.json", %{post: post}) do
+    def render("postdetail.json", %{post: post}) do
         %{
             id: post.id,
             title: post.title,
