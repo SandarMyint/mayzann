@@ -48,7 +48,7 @@ defmodule MayzannWeb.AuthController do
 
     def gg(conn,  _params) do
 
-        IO.inspect params
+        # IO.inspect params
         HTTPoison.start
 
         body = Poison.encode!(%{

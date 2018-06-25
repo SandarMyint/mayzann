@@ -76,8 +76,9 @@ defmodule MayzannWeb.PostController do
     def delete(conn, %{"id" => post_id}) do
         post = Repo.get(Post, post_id)
         case Repo.delete(post) do
-            posts = Repo.all(Post)
-            render conn, "index.json", posts: posts 
+            {:ok,_post} ->
+                posts = Repo.all(Post)
+                render conn, "index.json", posts: posts 
         end
     end
   end
