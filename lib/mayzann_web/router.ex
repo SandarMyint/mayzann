@@ -24,6 +24,7 @@ defmodule MayzannWeb.Router do
 
     get "/new", PostController, :new
     post "/post", PostController, :create
+    get "/github_login", AuthController, :gg
   end
 
   scope "/auth", MayzannWeb do
