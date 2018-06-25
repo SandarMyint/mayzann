@@ -17,6 +17,6 @@ defmodule Mayzann.User do
   def changeset(user, attrs \\ %{}) do
     user
     |> cast(attrs, [:username, :email, :provider, :token])
-    |> validate_required([:username, :email, :provider, :token])
+    |> validate_required([:username, :email])
   end
 end

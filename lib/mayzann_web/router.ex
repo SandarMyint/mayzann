@@ -22,9 +22,12 @@ defmodule MayzannWeb.Router do
 
     # get "/detail/:id", PostController, :detail
 
-    # get "/new", PostController, :new
+    # get "/new", PostCsontroller, :new
     # post "/post", PostController, :create
     # get "/edit", PostController, :edit
+    get "/new", PostController, :new
+    post "/post", PostController, :create
+    get "/github_login", AuthController, :gg
   end
 
   scope "/auth", MayzannWeb do
