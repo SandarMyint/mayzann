@@ -11,6 +11,7 @@ defmodule MayzannWeb.UserView do
         %{
             id: user.id,
             username: user.username,
+            idicon: Idicon.create(~s[#{user.id}]),
         }
     end
 

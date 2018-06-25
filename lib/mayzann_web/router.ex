@@ -18,12 +18,13 @@ defmodule MayzannWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-    get "/index", PostController, :index
+    # get "/index", PostController, :index
 
-    get "/detail/:id", PostController, :detail
+    # get "/detail/:id", PostController, :detail
 
-    get "/new", PostController, :new
-    post "/post", PostController, :create
+    # get "/new", PostController, :new
+    # post "/post", PostController, :create
+    # get "/edit", PostController, :edit
   end
 
   scope "/auth", MayzannWeb do
@@ -32,11 +33,19 @@ defmodule MayzannWeb.Router do
     get "/signout", AuthController, :signout
     get "/:provider", AuthController, :request
     get "/:provider/callback", AuthController, :callback
+
   end
 
   # Other scopes may use custom stacks.
   scope "/api", MayzannWeb do
     pipe_through :api
+    get "/", PostController, :index
+    get "/post", PostController, :index
+    #get "/new", PostController, :new
+    post "/post", PostController, :create
+    get "/post/:id", PostController, :detail
+    delete "/post/:id", PostController, :delete
+    put "/post/:id", PostController, :update
 
     resources "/users", UserController, only: [:show]    
   end

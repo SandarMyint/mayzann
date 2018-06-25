@@ -1,0 +1,5 @@
+<%= form_for @changeset, post_path(@conn, :update, @post), fn f -> %>
+    <%= text_input f, :title, placeholder: "Edit Title Of Your Post" %>
+    <%= text_input f, :description, placeholder: "Enter Description Of Your Post" %>
+    <%= submit "Save Changes" %>
+<% end %>
