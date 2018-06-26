@@ -38,6 +38,8 @@ defmodule MayzannWeb.Endpoint do
     key: "_mayzann_key",
     signing_salt: "WLK83iRR"
 
+  plug CORSPlug
+
   plug MayzannWeb.Router
 
   @doc """

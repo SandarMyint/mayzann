@@ -20,7 +20,7 @@ defmodule Mayzann.Mixfile do
   def application do
     [
       mod: {Mayzann.Application, []},
-      extra_applications: [:logger, :runtime_tools, :ueberauth_github]
+      extra_applications: [:logger, :runtime_tools, :ueberauth_github, :httpoison]
     ]
   end
 
@@ -42,7 +42,9 @@ defmodule Mayzann.Mixfile do
       {:gettext, "~> 0.11"},
       {:cowboy, "~> 1.0"},
       {:ueberauth_github, "~> 0.7"},
-      {:idicon, "~> 0.1.1"}
+      {:idicon, "~> 0.1.1"},
+      {:httpoison, "~>1.0"},
+      {:cors_plug, "~> 1.5"}
     ]
   end
 
