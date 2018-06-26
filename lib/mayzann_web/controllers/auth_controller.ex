@@ -4,6 +4,7 @@ defmodule MayzannWeb.AuthController do
 
     alias Mayzann.User
     alias Mayzann.Repo
+    action_fallback MayzannWeb.FallbackController
     
     def index(conn, _params) do
         text conn, "auth controller index"
@@ -46,15 +47,17 @@ defmodule MayzannWeb.AuthController do
         |> redirect(to: page_path(conn, :index))
     end
 
-    def gg(conn,  _params) do
+    def gg(conn,  params) do
 
-        # IO.inspect params
+        IO.inspect params["body"]["code"]
         HTTPoison.start
+        
 
         body = Poison.encode!(%{
             "client_id": "d625961b69225e5d76f2",
             "client_secret": "a44902336f737824fcebff40c862a6bffcf0ff63",
-            "code": "03e112c939756ad82262",
+            # "code": params["body"]["code"],
+            "code": "4fd9f46cbe93dd06d5ff",
           })
 
         # body = [client_id: "d625961b69225e5d76f2",client_secret: "a44902336f737824fcebff40c862a6bffcf0ff63",code: "51901febea16219ec30a"]
@@ -65,19 +68,23 @@ defmodule MayzannWeb.AuthController do
         # IO.inspect response
 
         case response.body =~ "access_token" do
-            true -> getUser(response.body)
-            false -> getUser(response.body)
+            true -> conn
+                    |> getUser(response.body)
+            false -> conn
+                     |> getUser(response.body)
+                    
         end
 
-        text conn, "gg"
+        
     end
 
-    def getUser(body) do
-        url = "https://api.github.com/user?access_token=db41c3e486a5dfd9717af4f34882c747441420e2&scope=user%3Aemail&token_type=bearer"
-        IO.puts "URL to request::"
-        IO.inspect url
+    def getUser(conn, body) do
+        # url = "https://api.github.com/user?access_token=db41c3e486a5dfd9717af4f34882c747441420e2&scope=user%3Aemail&token_type=bearer"
+        url = "https://api.github.com/user?#{body}"
+        # IO.puts "URL to request::"
+        # IO.inspect url
         {:ok, response} = HTTPoison.get(url)
-        IO.puts "GG RESPONSE BODY::::"
+        # IO.puts "GG RESPONSE BODY::::"
         # IO.inspect response.body
         test = Poison.decode(~s(#{response.body}))
         IO.inspect test
@@ -87,7 +94,16 @@ defmodule MayzannWeb.AuthController do
         IO.puts email
         user_params = %{username: login, email: email, provider: "github"}
         changeset = User.changeset(%User{}, user_params)
-        insert_or_update_user(changeset)
+        IO.inspect changeset
+        
+        case insert_or_update_user(changeset) do
+            {:ok, user} -> 
+                IO.inspect user
+                # Repo.get_by(User, email: changeset.changes.email)
+                # user = Repo.get!(Post, post_id)
+                render conn, "show.json", user: user
+            
+        end
     end
 
 end

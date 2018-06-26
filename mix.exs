@@ -43,7 +43,8 @@ defmodule Mayzann.Mixfile do
       {:cowboy, "~> 1.0"},
       {:ueberauth_github, "~> 0.7"},
       {:idicon, "~> 0.1.1"},
-      {:httpoison, "~>1.0"}
+      {:httpoison, "~>1.0"},
+      {:cors_plug, "~> 1.5"}
     ]
   end
 

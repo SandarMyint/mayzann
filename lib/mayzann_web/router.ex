@@ -2,6 +2,7 @@ defmodule MayzannWeb.Router do
   use MayzannWeb, :router
 
   pipeline :browser do
+    plug CORSPlug, origin: "http://localhost:3006"
     plug :accepts, ["html"]
     plug :fetch_session
     plug :fetch_flash
@@ -11,6 +12,7 @@ defmodule MayzannWeb.Router do
   end
 
   pipeline :api do
+    plug CORSPlug, origin: "http://localhost:3006"
     plug :accepts, ["json"]
   end
 
@@ -48,9 +50,10 @@ defmodule MayzannWeb.Router do
     post "/post", PostController, :create
     get "/post/:id", PostController, :detail
     delete "/post/:id", PostController, :delete
-    put "/post/:id", PostController, :update
+    # put "/post/:id", PostController, :update
 
     resources "/users", UserController, only: [:show]    
+    post "/github_login", AuthController, :gg
   end
 
   # scope "/", MayzannWeb do
