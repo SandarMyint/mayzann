@@ -13,7 +13,7 @@ defmodule MayzannWeb.AuthView do
     def user_json(user) do
         %{
             username: user.username,
-            profile: "http://github.api.com/user=2313213?profile"
+            profile: user.avatar_url
         }
     end
 

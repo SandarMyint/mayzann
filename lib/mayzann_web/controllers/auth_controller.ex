@@ -57,7 +57,7 @@ defmodule MayzannWeb.AuthController do
             "client_id": "d625961b69225e5d76f2",
             "client_secret": "a44902336f737824fcebff40c862a6bffcf0ff63",
             # "code": params["body"]["code"],
-            "code": "4fd9f46cbe93dd06d5ff",
+            "code": "a2a3db23b0994fd27754",
           })
 
         # body = [client_id: "d625961b69225e5d76f2",client_secret: "a44902336f737824fcebff40c862a6bffcf0ff63",code: "51901febea16219ec30a"]
@@ -89,10 +89,11 @@ defmodule MayzannWeb.AuthController do
         test = Poison.decode(~s(#{response.body}))
         IO.inspect test
 
-        {:ok, %{"login" => login, "email" => email}} = test
+        {:ok, %{"login" => login, "email" => email, "avatar_url" => avatar_url}} = test
         IO.puts login
         IO.puts email
-        user_params = %{username: login, email: email, provider: "github"}
+        IO.puts avatar_url
+        user_params = %{username: login, email: email, avatar_url: avatar_url, provider: "github"}
         changeset = User.changeset(%User{}, user_params)
         IO.inspect changeset
         
