@@ -56,8 +56,8 @@ defmodule MayzannWeb.AuthController do
         body = Poison.encode!(%{
             "client_id": "d625961b69225e5d76f2",
             "client_secret": "a44902336f737824fcebff40c862a6bffcf0ff63",
-            # "code": params["body"]["code"],
-            "code": "a2a3db23b0994fd27754",
+            "code": params["body"]["code"]
+            # "code": "a2a3db23b0994fd27754",
           })
 
         # body = [client_id: "d625961b69225e5d76f2",client_secret: "a44902336f737824fcebff40c862a6bffcf0ff63",code: "51901febea16219ec30a"]

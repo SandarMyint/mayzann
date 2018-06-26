@@ -45,9 +45,9 @@ defmodule MayzannWeb.Router do
   scope "/api", MayzannWeb do
     pipe_through :api
     get "/", PostController, :index
-    get "/post", PostController, :index
+    get "/posts", PostController, :index
     #get "/new", PostController, :new
-    post "/post", PostController, :create
+    post "/upload", PostController, :create
     get "/post/:id", PostController, :detail
     delete "/post/:id", PostController, :delete
     # put "/post/:id", PostController, :update

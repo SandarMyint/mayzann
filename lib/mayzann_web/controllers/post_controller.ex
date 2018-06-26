@@ -6,6 +6,7 @@ defmodule MayzannWeb.PostController do
     alias Mayzann.User
 
     alias MayzannWeb.PageView
+    action_fallback MayzannWeb.FallbackController
     
     # plug Discuss.Plugs.RequireAuth when action in [:new, :create, :edit, :update, :delete]
 #   plug :check_topic_owner when action in [:update, :edit, :delete]
@@ -18,8 +19,14 @@ defmodule MayzannWeb.PostController do
 
     #Show Post Details By ID
     def detail(conn, %{"id" => post_id}) do
-        post = Repo.get!(Post, post_id)
-        render(conn, "detail.json" , post: post)
+        post = Repo.get(Post, post_id)
+        id = post.user_id
+        user = Repo.get(User, id)
+        # render(conn, "detail.json" , post: post)
+
+        if post do
+            render(conn, "detail.json", post: post)
+        end
     end
 
     #Go To Create Page 

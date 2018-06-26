@@ -5,7 +5,7 @@ defmodule MayzannWeb.FallbackController do
 
     def call(conn, nil) do
         conn
-        |> render(ErrorView, "error.json", message: "FallbackController")
+        |> render(ErrorView, "error.json", message: "nil")
     end
 
 end
