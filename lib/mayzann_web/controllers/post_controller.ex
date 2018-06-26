@@ -20,6 +20,8 @@ defmodule MayzannWeb.PostController do
     #Show Post Details By ID
     def detail(conn, %{"id" => post_id}) do
         post = Repo.get(Post, post_id)
+        id = post.user_id
+        user = Repo.get(User, id)
         # render(conn, "detail.json" , post: post)
 
         if post do
