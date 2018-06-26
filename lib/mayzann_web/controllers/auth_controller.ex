@@ -63,19 +63,19 @@ defmodule MayzannWeb.AuthController do
         # body = [client_id: "d625961b69225e5d76f2",client_secret: "a44902336f737824fcebff40c862a6bffcf0ff63",code: "51901febea16219ec30a"]
         headers = [{"Content-type", "application/json"}]
         url = "https://github.com/login/oauth/access_token"
-        {:ok, response} = HTTPoison.post(url, body, headers, [])
+        {:ok, response} = HTTPoison.post(url, body, headers, []) #issue a POST request to the given url
 
-        # IO.inspect response
+        IO.inspect response
 
         case response.body =~ "access_token" do
             true -> conn
                     |> getUser(response.body)
             false -> conn
                      |> getUser(response.body)
-                    
+                            
+
         end
 
-        
     end
 
     def getUser(conn, body) do
@@ -83,16 +83,13 @@ defmodule MayzannWeb.AuthController do
         url = "https://api.github.com/user?#{body}"
         # IO.puts "URL to request::"
         # IO.inspect url
-        {:ok, response} = HTTPoison.get(url)
+        {:ok, response} = HTTPoison.get(url)# issue a GET request to the given url
         # IO.puts "GG RESPONSE BODY::::"
-        # IO.inspect response.body
+        IO.inspect response.body
         test = Poison.decode(~s(#{response.body}))
         IO.inspect test
 
         {:ok, %{"login" => login, "email" => email, "avatar_url" => avatar_url}} = test
-        IO.puts login
-        IO.puts email
-        IO.puts avatar_url
         user_params = %{username: login, email: email, avatar_url: avatar_url, provider: "github"}
         changeset = User.changeset(%User{}, user_params)
         IO.inspect changeset

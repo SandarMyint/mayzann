@@ -10,6 +10,7 @@ defmodule MayzannWeb.PostView do
         %{id: post.id,
           title: post.title,
           description: post.description
+          user_id: post.user_id
         }
     end
 
@@ -22,6 +23,7 @@ defmodule MayzannWeb.PostView do
             id: post.id,
             title: post.title,
             description: post.description
+            user_id: user_id
         }
     end
 end
