@@ -1,6 +1,8 @@
 defmodule MayzannWeb.PostController do
     use MayzannWeb, :controller
 
+    import Ecto.Query
+
     alias Mayzann.Post
     alias Mayzann.Repo
     alias Mayzann.User
@@ -19,13 +21,18 @@ defmodule MayzannWeb.PostController do
 
     #Show Post Details By ID
     def detail(conn, %{"id" => post_id}) do
-        post = Repo.get(Post, post_id)
-        id = post.user_id
-        user = Repo.get(User, id)
+        # post = Repo.all from p in Post, 
+        #                 where: p.id == ^post_id,
+        #                 preload: [:user]  # cannot use this query
+        post = Repo.get(Post, post_id) |> Repo.preload([:user])
+        IO.inspect(post)
+
         # render(conn, "detail.json" , post: post)
+        # text(conn, "detail")
 
         if post do
             render(conn, "detail.json", post: post)
+            #text conn, "detail"
         end
     end
 
